@@ -32,6 +32,8 @@ alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.ar
 alias urldecode_s='python -c "import sys, urllib as ul; [sys.stdout.write(ul.unquote_plus(l)) for l in sys.stdin]"'
 alias urlencode_s='python -c "import sys, urllib as ul; [sys.stdout.write(ul.quote_plus(l)) for l in sys.stdin]"'
 
+complete -W "\`grep -oE '^[a-zA-Z0-9_.-]+:([^=]|$)' Makefile | sed 's/[^a-zA-Z0-9_.-]*$//'\`" make
+
 . ~/.bash_prompt.sh
 
 # virtualenv wrapper
