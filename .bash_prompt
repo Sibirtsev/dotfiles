@@ -10,14 +10,14 @@ YELLOW_DARK="\[\033[0;33m\]"
 LIGHT_GREEN="\[\033[1;32m\]"
       WHITE="\[\033[1;37m\]"
  LIGHT_GRAY="\[\033[0;37m\]"
- COLOR_VENV="\[\033[0;46;37m\]"
- COLOR_USER="\[\033[0;47;32m\]"
- COLOR_AT="\[\033[0;47;95m\]"
+ COLOR_VENV="\[\033[38;5;32m\]"
+ COLOR_USER="\[\033[38;5;22m\]"
+ COLOR_AT="\[\033[38;5;53m\]"
  COLOR_IP="\[\033[0;47;36m\]"
- COLOR_PATH="\[\033[5;47;34m\]"
- COLOR_BRANCH_GREEN="\[\033[7;100;32m\]"
- COLOR_BRANCH_YELLOW="\[\033[7;100;33m\]"
- COLOR_BRANCH_RED="\[\033[7;47;91m\]"
+ COLOR_PATH="\[\033[38;5;24m\]"
+ COLOR_BRANCH_GREEN="\[\033[38;5;34m\]"
+ COLOR_BRANCH_YELLOW="\[\033[38;5;184m\]"
+ COLOR_BRANCH_RED="\[\033[38;5;160m\]"
  COLOR_NONE="\[\e[0m\]"
 
 # Detect whether the current directory is a git repository.
@@ -64,7 +64,7 @@ function set_git_branch {
   fi
 
   # Set the final branch string.
-  BRANCH="${state}(${branch})${remote}${COLOR_NONE} "
+  BRANCH="${state}(${branch})${remote}${COLOR_NONE}"
 }
 
 # Return the prompt symbol to use, colorized based on the return value of the
@@ -99,7 +99,7 @@ function set_bash_prompt () {
   # Set the PYTHON_VIRTUALENV variable.
   set_virtualenv
 
-  set_ip
+  #set_ip
 
   # Set the BRANCH variable.
   if is_git_repository ; then
@@ -109,9 +109,7 @@ function set_bash_prompt () {
   fi
 
   # Set the bash prompt variable.
-  PS1="
-${PYTHON_VIRTUALENV}${COLOR_USER}\u${COLOR_AT}@${COLOR_IP}${THEIP}:${COLOR_PATH}\w ${COLOR_NONE}${BRANCH}
-${PROMPT_SYMBOL} "
+  PS1="${PYTHON_VIRTUALENV}${COLOR_USER}\s${COLOR_AT} @ ${COLOR_PATH}\w ${COLOR_NONE}${BRANCH} ${PROMPT_SYMBOL} "
 }
 
 # Tell bash to execute this function just before displaying its prompt.
